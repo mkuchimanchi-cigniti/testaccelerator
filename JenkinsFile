@@ -58,6 +58,7 @@ pipeline {
        }
 		 stage('Deploy Application') {
         steps {
+	   bat "Octo.exe create-release --project=TestAccelerator --releaseNumber=1.0.${BUILD_NUMBER}  --packageversion=1.0.${BUILD_NUMBER} --server=http://172.16.3.74 --apiKey=API-DJ4QRHGRGM7PNU06Y7HQMW1ZZM"
            echo "Application Deployed"
          
          }  
