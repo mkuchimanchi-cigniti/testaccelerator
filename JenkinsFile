@@ -12,7 +12,7 @@ pipeline {
        stage('Build & Package') {
         steps {
             bat label: '', script: 'mvn package'
-            bat 'octo pack --id="TestAccelerator" --version="1.0.${BUILD_NUMBER}" --basePath="target" --outFolder="target" --include=*.war'
+            bat "octo.exe pack --id=TestAccelerator --version=1.0.${BUILD_NUMBER} --basePath=target --outFolder=target --include=*.war"
          }
          
       }
