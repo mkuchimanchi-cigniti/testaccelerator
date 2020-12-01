@@ -12,7 +12,7 @@ pipeline {
        stage('Build & Package') {
         steps {
             bat label: '', script: 'mvn package'
-         
+            bat 'octo pack --id="TestAccelerator" --version="1.0.${BUILD_NUMBER}" --basePath="target" --outFolder="target" --include=*.war'
          }
          
       }
@@ -43,11 +43,19 @@ pipeline {
 		 }
         stage('Upload Artifacts') {
         steps {
-           echo "Uploaded Artifacts"
-	   nexusArtifactUploader artifacts: [[artifactId: 'TestAccelerator', classifier: '', file: 'TestAccelerator.war', type: 'war']], credentialsId: '98e8facd-8846-432e-a3cb-41564d070651', groupId: '${GROUP_ID}', nexusUrl: 'http://172.16.3.74:8088', nexusVersion: 'nexus3', protocol: 'http', repository: 'testaccelerator', version: '${VERSION}'
-         
+            script { 
+                 def server = Artifactory.server 'Art-1'
+                 def uploadSpec = """{
+                    "files": [{
+                       "pattern": "target/*.nupkg",
+                       "target": "TestAccelerator/"
+                    }]
+                 }"""
+
+                 server.upload(uploadSpec) 
+               }
          }  
-		 }
+       }
 		 stage('Deploy Application') {
         steps {
            echo "Application Deployed"
