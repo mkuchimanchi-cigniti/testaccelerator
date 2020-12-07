@@ -11,6 +11,7 @@ pipeline {
       }
        stage('Build & Package') {
         steps {
+	    echo "Start"
             bat label: '', script: 'mvn package'
             bat "octo.exe pack --id=TestAccelerator --version=1.0.${BUILD_NUMBER} --basePath=target --outFolder=target --include=*.war"
          }
