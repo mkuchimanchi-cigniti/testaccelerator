@@ -54,7 +54,7 @@ pipeline {
 
                  server.upload(uploadSpec) 
                } */
-	       bat "octo.exe push --package TestAccelerator.1.0.${BUILD_NUMBER}.nupkg --replace-existing --server http://172.16.3.74/ --apiKey API-DJ4QRHGRGM7PNU06Y7HQMW1ZZM "
+	       bat "octo.exe push --package target/TestAccelerator.1.0.${BUILD_NUMBER}.nupkg --replace-existing --server http://172.16.3.74/ --apiKey API-DJ4QRHGRGM7PNU06Y7HQMW1ZZM "
          }  
        }
 		 /* stage('Deploy Application') {
