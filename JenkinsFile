@@ -23,6 +23,7 @@ pipeline {
 				  
 				   
 					script{
+					         //sonar code scan
 						def scannerHome = tool 'sonarqube';
 						withSonarQubeEnv{
 						    bat "\"${scannerHome}\"\\bin\\sonar-scanner "+
