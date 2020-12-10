@@ -4,8 +4,7 @@ pipeline {
    stages {
       stage('Pull code') {
          steps {
-	    cleanWs()
-	    
+	    cleanWs()	    
             git changelog: false, branch: 'main', credentialsId: '4573c33d-b90f-4656-a27e-0bd7f3760d46', poll: false, url: 'https://github.com/mkuchimanchi-cigniti/testaccelerator.git'
          }
          
